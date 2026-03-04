@@ -1,7 +1,7 @@
 # SZ Calculator
 
 [![CI](https://github.com/sconetto/sz-calculator/actions/workflows/ci.yml/badge.svg)](https://github.com/sconetto/sz-calculator/actions/workflows/ci.yml)
-[![Go Version](https://img.shields.io/github/go-mod/go-version/sconetto/sz-calculator)](https://github.com/sconetto/sz-calculator)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/sconetto/sz-calculator?filename=backend/go.mod)](https://github.com/sconetto/sz-calculator)
 [![Node Version](https://img.shields.io/node/v/vite)](https://github.com/sconetto/sz-calculator)
 [![License: GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 
@@ -26,6 +26,47 @@ SZ Calculator is a full-stack calculator app with a Go backend (Huma + Chi) and 
 - **Frontend:** React 18, TypeScript, Vite, React Router
 - **Testing:** Go `testing`, Vitest, Testing Library
 - **Tooling:** ESLint, golangci-lint, Docker Compose
+
+## Design Rationale
+
+### Architecture Decisions
+
+1. **Backend-Driven Calculations**
+   - All mathematical operations are performed on the backend to ensure consistency and security
+   - The frontend is kept as a thin UI layer, handling only basic input validation and display
+   - This architecture prevents floating-point discrepancies between client and server
+
+2. **REST API with Huma**
+   - Huma provides automatic OpenAPI documentation generation
+   - Type-safe request/response handling with automatic JSON marshalling
+   - Built-in support for middleware (CORS, logging, recovery)
+
+3. **React with Custom Hooks**
+   - Business logic is extracted into custom hooks (`useCalculator`, `useDisplayScaling`)
+   - Separation of concerns: hooks handle logic, components handle rendering
+   - Co-located tests with source files for better maintainability
+
+4. **Session-Based History**
+   - History is stored in `sessionStorage` for privacy and persistence across page reloads
+   - Limited to 50 entries to prevent unbounded storage growth
+
+5. **Responsive Design**
+   - CSS variables and media queries for cross-device compatibility
+   - Dynamic font scaling to support various display sizes
+   - Touch-friendly button sizing for mobile devices
+
+6. **Security First**
+   - Rate limiting to prevent API abuse
+   - HTTP timeouts to prevent hanging connections
+   - Security headers for browser-side protection
+   - Input validation for all mathematical operations
+
+### Technology Choices
+
+- **Go + Huma**: Fast backend with minimal boilerplate, excellent for microservices
+- **React + Vite**: Fast development experience with hot module replacement
+- **TypeScript**: Type safety across both frontend and backend
+- **Docker**: Consistent development and production environments
 
 ## Project Structure
 
@@ -242,6 +283,46 @@ npm run lint
 npm test -- --run
 npm run build
 ```
+
+## Coverage Report
+
+### Backend (tests)
+
+The backend uses Go's testing package with tests located in the `tests/` package. The tests cover:
+
+- **Calculator Logic** (`src/calculator.go`): Unit tests for all mathematical operations
+- **API Endpoints** (`api/api.go`): Integration tests for all REST endpoints
+
+Run coverage:
+
+```bash
+cd backend
+go test -v ./...
+```
+
+Current test coverage includes:
+
+- Binary operations: add, subtract, multiply, divide, power
+- Unary operations: negate, sqrt, square, percentage
+- Input validation: NaN, Infinity, division by zero
+- Error handling: All error paths
+
+### Frontend (tests)
+
+The frontend uses Vitest with React Testing Library. Tests cover:
+
+- **Hooks**: `useCalculator`, `useDisplayScaling`
+- **Components**: `Modal`, `CalculatorPage`
+- **Utils**: API layer
+
+Run coverage:
+
+```bash
+cd frontend
+npm test -- --run
+```
+
+Current test count: **29 tests** across 5 test files
 
 ## Frontend Architecture
 
