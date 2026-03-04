@@ -1,0 +1,61 @@
+:root {
+  font-family: 'Inter', sans-serif;
+  --button-size: 72px;
+  --button-font-size: 1.8rem;
+  --display-font-size: 3.5rem;
+  --sub-display-font-size: 1.1rem;
+  --container-padding: 16px;
+  --container-gap: 12px;
+  --max-width: 375px;
+}
+
+/* Medium height screens */
+@media (max-height: 750px) {
+  :root {
+    --button-size: 64px;
+    --button-font-size: 1.5rem;
+    --display-font-size: 2.8rem;
+    --container-padding: 12px;
+    --container-gap: 8px;
+  }
+}
+
+/* Small height screens (iPhone SE, Galaxy S8+) */
+@media (max-height: 650px) {
+  :root {
+    --button-size: 52px;
+    --button-font-size: 1.3rem;
+    --display-font-size: 2.2rem;
+    --container-padding: 10px;
+    --container-gap: 6px;
+  }
+}
+
+/* Landscape or very short screens */
+@media (max-height: 500px) {
+  :root {
+    --button-size: 42px;
+    --button-font-size: 1.1rem;
+    --display-font-size: 1.8rem;
+    --container-padding: 8px;
+    --container-gap: 4px;
+  }
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: #000;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
