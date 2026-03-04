@@ -1,0 +1,26 @@
+{
+  "cSpell.words": [
+    "danielgtaylor",
+    "Dockerized",
+    "errcheck",
+    "exponentiate",
+    "Flexbox",
+    "github",
+    "gofmt",
+    "goimports",
+    "golangci",
+    "golint",
+    "gosimple",
+    "govet",
+    "huma",
+    "humachi",
+    "ineffassign",
+    "nosniff",
+    "sconetto",
+    "Sconetto",
+    "sloglint",
+    "staticcheck",
+    "tsparser",
+    "vitest"
+  ]
+}
