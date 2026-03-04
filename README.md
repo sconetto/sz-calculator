@@ -9,6 +9,21 @@ SZ Calculator is a full-stack calculator app with a Go backend (Huma + Chi) and 
 
 ## Highlights
 
+### Screenshots
+
+<p align="center">
+<table>
+  <tr>
+    <td><img src="docs/img/multiply.png" width="250"/></td>
+    <td><img src="docs/img/power_2.png" width="250"/></td>
+    <td><img src="docs/img/history.png" width="250"/></td>
+    <td><img src="docs/img/how_to.png" width="250"/></td>
+  </tr>
+</table>
+</p>
+
+### Features
+
 - Backend-powered calculations for binary and unary operations
 - Responsive calculator UI tuned for desktop and small mobile screens
 - Calculation history stored in `sessionStorage` (max 50 entries)
